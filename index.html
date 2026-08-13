@@ -3,19 +3,82 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Catalog</title>
+  <title>Admin Dashboard | E-Commerce</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <header class="topbar">
-    <h1>Product Catalog</h1>
+    <h1>E-Commerce Admin Dashboard</h1>
   </header>
 
   <main class="container">
-    <section class="catalog" id="catalog"></section>
+    <section class="toolbar">
+      <input
+        type="text"
+        id="search-input"
+        class="search-input"
+        placeholder="Search products by name..."
+        autocomplete="off"
+      >
+      <span id="result-count" class="result-count"></span>
+    </section>
+
+    <section class="table-wrapper">
+      <table class="product-table" id="product-table">
+        <thead>
+          <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Stock Status</th>
+            <th class="actions-col">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="product-table-body"></tbody>
+      </table>
+      <p id="no-results" class="no-results hidden">No products match your search.</p>
+    </section>
   </main>
 
-  <script src="js/products.js"></script>
-  <script src="js/index.js"></script>
+  <!-- Edit modal -->
+  <div class="modal-overlay hidden" id="edit-modal">
+    <div class="modal">
+      <h2>Edit Product</h2>
+      <div class="modal-loader" id="modal-loader">
+        <div class="spinner"></div>
+        <p>Loading product data...</p>
+      </div>
+      <form id="edit-form" class="edit-form hidden" novalidate>
+        <div class="form-group">
+          <label for="edit-name">Product Name</label>
+          <input type="text" id="edit-name" disabled>
+        </div>
+        <div class="form-group">
+          <label for="edit-price">Price (USD)</label>
+          <input type="number" id="edit-price" min="0" step="0.01" required>
+          <p class="field-error" id="price-error"></p>
+        </div>
+        <div class="form-group">
+          <label for="edit-stock">Stock Status</label>
+          <select id="edit-stock">
+            <option value="In Stock">In Stock</option>
+            <option value="Out of Stock">Out of Stock</option>
+            <option value="Low Stock">Low Stock</option>
+          </select>
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="cancel-btn" class="btn btn-secondary">Cancel</button>
+          <button type="submit" id="save-btn" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Success toast -->
+  <div id="toast" class="toast hidden">
+    <span class="toast-icon">&#10003;</span>
+    <span id="toast-message">Saved successfully!</span>
+  </div>
+
+  <script src="js/app.js"></script>
 </body>
 </html>
