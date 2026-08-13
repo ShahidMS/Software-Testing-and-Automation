@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="details-page">
+    <div class="spinner" id="spinner" aria-label="Loading">
+      <div class="spinner-circle"></div>
+      <p>Loading product details...</p>
+    </div>
+
+    <section class="product-details hidden" id="product-details">
+      <h1 class="product-name" id="product-name"></h1>
+      <p class="product-price" id="product-price"></p>
+      <p class="product-rating" id="product-rating"></p>
+      <button class="btn btn-secondary" id="close-btn">Close &amp; Return</button>
+    </section>
+  </main>
+
+  <script src="js/products.js"></script>
+  <script src="js/details.js"></script>
+</body>
+</html>
